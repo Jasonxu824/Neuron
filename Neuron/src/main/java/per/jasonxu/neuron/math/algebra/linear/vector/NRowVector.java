@@ -7,8 +7,12 @@ public class NRowVector<T extends Computable<T>> extends NVector<T> {
 		super(VectorType.RowVector, data, new NColVectorSize(data.length));
 	}
 	
+	public NRowVector(Object[] data) {
+		super(VectorType.RowVector, data, new NColVectorSize(data.length));
+	}
+
 	@Override
-	public NVector<T> newInstance(T[] data) {
+	protected NVector<T> newInstance(Object[] data) {
 		return new NRowVector<T>(data);
 	}
 }
