@@ -89,7 +89,7 @@ public abstract class NVector<T extends Computable<T>> extends LinearSpace imple
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object dot(NVector<T> input) {
+	public T dot(NVector<T> input) {
 		checkTypeAndRange(input);
 		T result = null;
 		if (this.getDimention() > 0) {
@@ -100,6 +100,15 @@ public abstract class NVector<T extends Computable<T>> extends LinearSpace imple
 			result = (T) result.add(tmp);
 		}
 		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public NVector<T> dot(T input) {
+		Object[] tmp = new Object[this.getDimention()];
+		for (int i = 0; i < this.getDimention(); i++) {
+			tmp[i] = (T)((T)this.data[i]).multiply(input);
+		}
+		return this.newInstance(tmp);
 	}
 
 	@Override

@@ -36,5 +36,8 @@ public class Real implements Computable<Real> {
 		return String.valueOf(this.value);
 	}
 	
-	
+	@Override
+	public Real clone() {
+		return new Real(this.value);
+	}
 }
